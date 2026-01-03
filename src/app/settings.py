@@ -151,9 +151,9 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Your Project API",
-    "DESCRIPTION": "Your project description",
-    "VERSION": "1.0.0",
+    "TITLE": "Many schemas experiment",
+    "DESCRIPTION": "Проверка различных способов документированть множественные схемы возвражаемых данных",
+    "VERSION": None,
     "SERVE_INCLUDE_SCHEMA": False,
     "SWAGGER_UI_DIST": "SIDECAR",  # shorthand to use the sidecar instead
     "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
