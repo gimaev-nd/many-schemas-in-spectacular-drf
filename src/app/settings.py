@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-import sys, os
+import os
+import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -118,6 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -152,12 +155,20 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Many schemas experiment",
-    "DESCRIPTION": "Проверка различных способов документированть множественные схемы возвражаемых данных",
+    "TITLE": "Эксперимент с множественными схемами",
+    "DESCRIPTION": "Проверка различных способов документировать множественные схемы возвращаемых данных",
     "VERSION": None,
     "SERVE_INCLUDE_SCHEMA": False,
     "SWAGGER_UI_DIST": "SIDECAR",  # shorthand to use the sidecar instead
     "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
     "REDOC_DIST": "SIDECAR",
-    # OTHER SETTINGS
+    "SWAGGER_UI_SETTINGS": {
+        "defaultModelsExpandDepth": -1,
+    },  # OTHER SETTINGS
+}
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
 }
